@@ -32,3 +32,5 @@ sudo cp "$GITHUB_WORKSPACE"/config ~/immortalwrt/.config
 sudo chown builduser:builduser ~/immortalwrt/.config
 make defconfig
 make -j$(($(nproc)+1))
+
+tar -zcf ~/bin.tar.gz ~/immortalwrt/bin
