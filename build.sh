@@ -1,8 +1,8 @@
 #!/bin/bash
 
+cd ~
 sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
 
-cd ~
 git clone -b v24.10.2 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
 
 cd immortalwrt
@@ -28,8 +28,7 @@ sed -i 's#GO_AMD64:=v1#GO_AMD64:=v3#g' feeds/packages/lang/golang/golang-values.
 sed -i 's#llvm.download-ci-llvm=true#llvm.download-ci-llvm=false#g' feeds/packages/lang/rust/Makefile
 
 
-sudo cp "$GITHUB_WORKSPACE"/config ~/immortalwrt/.config
-sudo chown builduser:builduser ~/immortalwrt/.config
+cp ~/config ~/immortalwrt/.config
 make defconfig
 make -j$(($(nproc)+1))
 

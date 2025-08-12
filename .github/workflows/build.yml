@@ -26,7 +26,8 @@ jobs:
 
       - name: Run build.sh as builduser
         run: |
-          sudo chown -R builduser:builduser "$GITHUB_WORKSPACE"
+          sudo cp -f config /home/builduser/config
+          sudo chown -R builduser:builduser /home/builduser "$GITHUB_WORKSPACE"
           sudo -u builduser bash -c "
             cd '$GITHUB_WORKSPACE'
             bash build.sh
