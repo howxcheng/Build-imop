@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y sudo git
+          sudo apt install -y sudo rsync
 
       - name: Create build user
         run: |
@@ -34,7 +34,7 @@ jobs:
 
       - name: Package bin folder
         run: |
-          tar -czf bin.tar.gz bin
+          tar -czf bin.tar.gz "$GITHUB_WORKSPACE"/immortalwrt/bin
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
